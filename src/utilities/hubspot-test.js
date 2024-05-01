@@ -1,6 +1,6 @@
 // const hubspot = require("@hubspot/api-client");
 // const hubspotClient = new hubspot.Client({
-//   accessToken: "pat-na1-0e5061d7-77cf-4bd7-ba8d-7a5436adad67",
+//   accessToken: "",
 // });
 
 // const limit = 10;
