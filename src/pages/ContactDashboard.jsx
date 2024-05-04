@@ -18,20 +18,43 @@ export const ContactDashboard = () => {
 
   return (
     <div>
-      {contacts ? (
-        contacts.map((contact) => (
-          <ContactLine
-            key={contact.id}
-            id={contact.id}
-            firstname={contact.firstname}
-            lastname={contact.lastname}
-            email={contact.email}
-            createdAt={contact.createdAt}
-          />
-        ))
-      ) : (
-        <p>Loading contacts...</p>
-      )}
+      {" "}
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>
+                <label>
+                  <input type="checkbox" className="checkbox" />
+                </label>
+              </th>
+              <th>Name/Email</th>
+              <th>Role/Company</th>
+              <th>Created</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {contacts ? (
+              contacts.map((contact) => (
+                <ContactLine
+                  key={contact.id}
+                  id={contact.id}
+                  firstname={contact.firstname}
+                  lastname={contact.lastname}
+                  email={contact.email}
+                  createdAt={contact.createdAt}
+                  company={contact.company}
+                  jobtitle={contact.jobtitle}
+                />
+              ))
+            ) : (
+              <p>Loading contacts...</p>
+            )}
+          </tbody>
+        </table>
+      </div>
       <AddContact />
     </div>
   );

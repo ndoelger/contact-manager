@@ -38,25 +38,30 @@
 // };
 
 import axios from "axios";
+import { dateCoverter } from "./dateConverter";
 
 const token = process.env.REACT_APP_API_TOKEN;
 
 export const getContacts = async () => {
   try {
-    const response = await axios.get("/crm/v3/objects/contacts/?limit=20", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
-
+    const response = await axios.get(
+      "/crm/v3/objects/contacts/?limit=20&properties=email,firstname,lastname,jobtitle,company,jobAtCompany",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const contacts = response.data.results.map((contact) => {
       return {
         id: contact.id,
         firstname: contact.properties.firstname, // Assuming 'firstname' is correctly populated
         lastname: contact.properties.lastname, // Assuming 'firstname' is correctly populated
         email: contact.properties.email,
-        createdAt: contact.createdAt,
+        createdAt: dateCoverter(contact.createdAt),
+        company: contact.properties.company,
+        jobtitle: contact.properties.jobtitle,
       };
     });
     return contacts;
@@ -88,7 +93,7 @@ export const createContact = async (properties) => {
 
 export const deleteContact = async (id) => {
   try {
-    const response = await axios.delete(`/crm/v3/objects/contacts/${id}`, {
+    await axios.delete(`/crm/v3/objects/contacts/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
