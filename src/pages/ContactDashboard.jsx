@@ -54,8 +54,8 @@ export const ContactDashboard = () => {
             )}
           </tbody>
         </table>
+        <AddContact />
       </div>
-      <AddContact />
     </div>
   );
 };

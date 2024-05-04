@@ -7,7 +7,7 @@ import { ContactDashboard } from "./pages/ContactDashboard";
 function App() {
 
   return (
-    <div className="App">
+    <div className="App pb-7">
       <>
         <Routes>
           <Route path="/" element={<ContactDashboard />} />

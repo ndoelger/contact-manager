@@ -45,7 +45,7 @@ const token = process.env.REACT_APP_API_TOKEN;
 export const getContacts = async () => {
   try {
     const response = await axios.get(
-      "/crm/v3/objects/contacts/?limit=20&properties=email,firstname,lastname,jobtitle,company,jobAtCompany",
+      "/crm/v3/objects/contacts/?limit=20&properties=email,firstname,lastname,jobtitle,company",
       {
         headers: {
           Authorization: `Bearer ${token}`,
