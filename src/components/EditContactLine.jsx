@@ -51,7 +51,9 @@ export const EditContactLine = ({ id, firstname, lastname, email }) => {
             required
           />
         </label>
-        <button type="submit"></button>
+        <button className="text-blue-600" type="submit">
+          Edit
+        </button>
       </form>
     </div>
   );
