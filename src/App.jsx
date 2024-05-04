@@ -1,7 +1,7 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { getContacts } from "./utilities/hubspot-test";
+// import { getContacts } from "./utilities/hubspot-test";
 import { ContactDashboard } from "./pages/ContactDashboard";
 
 function App() {
@@ -10,8 +10,7 @@ function App() {
     <div className="App">
       <>
         <Routes>
-          Contacts
-          <Route path="/contacts" element={<ContactDashboard />} />
+          <Route path="/" element={<ContactDashboard />} />
         </Routes>
       </>
     </div>

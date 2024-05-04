@@ -43,7 +43,7 @@ const token = process.env.REACT_APP_API_TOKEN;
 
 export const getContacts = async () => {
   try {
-    const response = await axios.get("/crm/v3/objects/contacts", {
+    const response = await axios.get("/crm/v3/objects/contacts/?limit=20", {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -85,3 +85,19 @@ export const createContact = async (properties) => {
     console.error("Error:", error.response.data); // Handle errors here
   }
 };
+
+export const deleteContact = async (id) => {
+  try {
+    const response = await axios.delete(`/crm/v3/objects/contacts/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log("Deleted contact:", id);
+  } catch (error) {
+    console.error("Error:", error.response.data); // Handle errors here
+  }
+};
+
+deleteContact(1)
+
