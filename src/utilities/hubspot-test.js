@@ -99,5 +99,23 @@ export const deleteContact = async (id) => {
   }
 };
 
-deleteContact(1)
-
+export const updateContact = async (id, properties) => {
+  // console.log(properties);
+  try {
+    const response = await axios.delete(
+      `/crm/v3/objects/contacts${id}`,
+      {
+        properties,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(response.data);
+  } catch (error) {
+    console.error("Error:", error.response.data); // Handle errors here
+  }
+};
