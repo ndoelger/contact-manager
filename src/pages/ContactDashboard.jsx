@@ -14,7 +14,7 @@ export const ContactDashboard = () => {
 
   useEffect(() => {
     fetchContacts();
-  }, []);
+  }, [contacts]);
 
   return (
     <div>
@@ -23,8 +23,8 @@ export const ContactDashboard = () => {
           <ContactLine
             key={contact.id}
             id={contact.id}
-            firstName={contact.firstName}
-            lastName={contact.lastName}
+            firstname={contact.firstname}
+            lastname={contact.lastname}
             email={contact.email}
             createdAt={contact.createdAt}
           />

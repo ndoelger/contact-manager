@@ -53,8 +53,8 @@ export const getContacts = async () => {
     const contacts = response.data.results.map((contact) => {
       return {
         id: contact.id,
-        firstName: contact.properties.firstname, // Assuming 'firstname' is correctly populated
-        lastName: contact.properties.lastname, // Assuming 'firstname' is correctly populated
+        firstname: contact.properties.firstname, // Assuming 'firstname' is correctly populated
+        lastname: contact.properties.lastname, // Assuming 'firstname' is correctly populated
         email: contact.properties.email,
         createdAt: contact.createdAt,
       };
@@ -82,7 +82,7 @@ export const createContact = async (properties) => {
     );
     console.log(response.data);
   } catch (error) {
-    console.error("Error:", error.response.data); // Handle errors here
+    console.error("Error:", error.response.data.message); // Handle errors here
   }
 };
 
@@ -100,10 +100,9 @@ export const deleteContact = async (id) => {
 };
 
 export const updateContact = async (id, properties) => {
-  // console.log(properties);
   try {
-    const response = await axios.delete(
-      `/crm/v3/objects/contacts${id}`,
+    const response = await axios.patch(
+      `/crm/v3/objects/contacts/${id}`,
       {
         properties,
       },
