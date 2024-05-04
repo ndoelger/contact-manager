@@ -29,7 +29,7 @@ export const AddContact = () => {
           value={contact.firstname}
           onChange={handleChange}
           required
-          className="w-40"
+          className="w-30 input input-bordered max-w-xs"
         />
         <input
           type="text"
@@ -37,6 +37,7 @@ export const AddContact = () => {
           value={contact.lastname}
           onChange={handleChange}
           required
+          className="w-30 input input-bordered max-w-xs"
         />
 
         <input
@@ -45,6 +46,7 @@ export const AddContact = () => {
           value={contact.email}
           onChange={handleChange}
           required
+          className="w-30 input input-bordered max-w-xs"
         />
 
         <input
@@ -53,6 +55,7 @@ export const AddContact = () => {
           value={contact.company}
           onChange={handleChange}
           required
+          className="w-30 input input-bordered max-w-xs"
         />
 
         <input
@@ -61,6 +64,7 @@ export const AddContact = () => {
           value={contact.jobtitle}
           onChange={handleChange}
           required
+          className="w-30 input input-bordered max-w-xs"
         />
 
         <button className="btn btn-ghost btn-xs">submit</button>

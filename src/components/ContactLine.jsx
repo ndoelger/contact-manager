@@ -43,7 +43,12 @@ export const ContactLine = ({
       </td>
       <td>{createdAt}</td>
       <th>
-        <button className="btn btn-ghost btn-xs">details</button>
+        <button
+          className="btn btn-ghost btn-xs"
+          onClick={() => deleteContact(id)}>
+          {" "}
+          delete
+        </button>
       </th>
     </tr>
   );
