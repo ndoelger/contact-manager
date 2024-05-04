@@ -40,7 +40,6 @@
 import axios from "axios";
 
 const token = process.env.REACT_APP_API_TOKEN;
-console.log(token);
 
 export const getContacts = async () => {
   try {
@@ -54,14 +53,34 @@ export const getContacts = async () => {
     const contacts = response.data.results.map((contact) => {
       return {
         id: contact.id,
-        firstname: contact.properties.firstname, // Assuming 'firstname' is correctly populated
-        lastname: contact.properties.lastname, // Assuming 'firstname' is correctly populated
+        firstName: contact.properties.firstname, // Assuming 'firstname' is correctly populated
+        lastName: contact.properties.lastname, // Assuming 'firstname' is correctly populated
         email: contact.properties.email,
         createdAt: contact.createdAt,
       };
     });
-
     return contacts;
+  } catch (error) {
+    console.error("Error:", error.response.data); // Handle errors here
+  }
+};
+
+export const createContact = async (properties) => {
+  // console.log(properties);
+  try {
+    const response = await axios.post(
+      "/crm/v3/objects/contacts",
+      {
+        properties,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(response.data);
   } catch (error) {
     console.error("Error:", error.response.data); // Handle errors here
   }

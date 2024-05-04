@@ -1,10 +1,10 @@
 import React from "react";
 
-export const ContactLine = ({ id, firstname, lastname, email, createdAt }) => {
+export const ContactLine = ({ id, firstName, lastName, email, createdAt }) => {
   return (
     <div key={id}>
       <p>
-        Name: {firstname} {lastname}
+        Name: {firstName} {lastName}
       </p>
       <p>Email: {email}</p>
     </div>

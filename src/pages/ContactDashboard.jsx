@@ -2,6 +2,7 @@ import React from "react";
 import { ContactLine } from "../components/ContactLine";
 import { useState, useEffect } from "react";
 import { getContacts } from "../utilities/hubspot-test";
+import { AddContact } from "../components/AddContact";
 
 export const ContactDashboard = () => {
   const [contacts, setContacts] = useState(null);
@@ -22,8 +23,8 @@ export const ContactDashboard = () => {
           <ContactLine
             key={contact.id}
             id={contact.id}
-            firstname={contact.firstname}
-            lastname={contact.lastname}
+            firstName={contact.firstName}
+            lastName={contact.lastName}
             email={contact.email}
             createdAt={contact.createdAt}
           />
@@ -31,6 +32,7 @@ export const ContactDashboard = () => {
       ) : (
         <p>Loading contacts...</p>
       )}
+      <AddContact />
     </div>
   );
 };
