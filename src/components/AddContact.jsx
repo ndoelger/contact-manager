@@ -6,12 +6,13 @@ export const AddContact = () => {
     email: "",
     firstname: "",
     lastname: "",
+    company: "",
+    jobtitle: "",
   });
 
   const handleSubmit = async (evt) => {
-    evt.preventDefault()
-    await createContact(contact)
-
+    evt.preventDefault();
+    await createContact(contact);
   };
 
   const handleChange = (evt) => {
@@ -20,43 +21,59 @@ export const AddContact = () => {
   };
 
   return (
-    <div>
-      AddContact
+    <>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email{" "}
-          <input
-            type="text"
-            name="email"
-            value={contact.email}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          First Name{" "}
-          <input
-            type="text"
-            name="firstname"
-            value={contact.firstname}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Last Name{" "}
-          <input
-            type="text"
-            name="lastname"
-            value={contact.lastname}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <button type="submit"></button>
+        <input
+          type="text"
+          name="firstname"
+          value={contact.firstname}
+          onChange={handleChange}
+          // required
+          className="w-30 input input-bordered max-w-xs"
+          placeholder="First Name"
+        />
+        <input
+          type="text"
+          name="lastname"
+          value={contact.lastname}
+          onChange={handleChange}
+          // required
+          className="w-30 input input-bordered max-w-xs"
+          placeholder="Last Name"
+        />
+
+        <input
+          type="text"
+          name="email"
+          value={contact.email}
+          onChange={handleChange}
+          required
+          className="w-30 input input-bordered max-w-xs"
+          placeholder="Email"
+        />
+
+        <input
+          type="text"
+          name="company"
+          value={contact.company}
+          onChange={handleChange}
+          // required
+          className="w-30 input input-bordered max-w-xs"
+          placeholder="Company"
+        />
+
+        <input
+          type="text"
+          name="jobtitle"
+          value={contact.jobtitle}
+          onChange={handleChange}
+          // required
+          placeholder="Job Title"
+          className="w-30 input input-bordered max-w-xs"
+        />
+
+        <button className="btn btn-ghost btn-xs">submit</button>
       </form>
-    </div>
+    </>
   );
 };
