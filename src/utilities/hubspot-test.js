@@ -42,10 +42,10 @@ import { dateCoverter } from "./dateConverter";
 
 const token = process.env.REACT_APP_API_TOKEN;
 
-export const getContacts = async () => {
+export const getContacts = async (numContacts = 1) => {
   try {
     const response = await axios.get(
-      "/crm/v3/objects/contacts/?limit=20&properties=email,firstname,lastname,jobtitle,company",
+      `/crm/v3/objects/contacts/?limit=${numContacts}&properties=email,firstname,lastname,jobtitle,company`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

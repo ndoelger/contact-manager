@@ -28,16 +28,18 @@ export const AddContact = () => {
           name="firstname"
           value={contact.firstname}
           onChange={handleChange}
-          required
+          // required
           className="w-30 input input-bordered max-w-xs"
+          placeholder="First Name"
         />
         <input
           type="text"
           name="lastname"
           value={contact.lastname}
           onChange={handleChange}
-          required
+          // required
           className="w-30 input input-bordered max-w-xs"
+          placeholder="Last Name"
         />
 
         <input
@@ -47,6 +49,7 @@ export const AddContact = () => {
           onChange={handleChange}
           required
           className="w-30 input input-bordered max-w-xs"
+          placeholder="Email"
         />
 
         <input
@@ -54,8 +57,9 @@ export const AddContact = () => {
           name="company"
           value={contact.company}
           onChange={handleChange}
-          required
+          // required
           className="w-30 input input-bordered max-w-xs"
+          placeholder="Company"
         />
 
         <input
@@ -63,7 +67,8 @@ export const AddContact = () => {
           name="jobtitle"
           value={contact.jobtitle}
           onChange={handleChange}
-          required
+          // required
+          placeholder="Job Title"
           className="w-30 input input-bordered max-w-xs"
         />
 

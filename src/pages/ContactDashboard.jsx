@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ContactLine } from "../components/ContactLine";
 import { useState, useEffect } from "react";
 import { getContacts } from "../utilities/hubspot-test";
@@ -7,18 +8,30 @@ import { AddContact } from "../components/AddContact";
 export const ContactDashboard = () => {
   const [contacts, setContacts] = useState(null);
 
+  const [numContacts, setNumContacts] = useState(1);
+
   const fetchContacts = async () => {
-    const response = await getContacts();
+    const response = await getContacts(numContacts);
     setContacts(response);
   };
 
   useEffect(() => {
     fetchContacts();
-  }, [contacts]);
+    // eslint-disable-next-line
+  }, [numContacts]);
 
   return (
     <div>
       {" "}
+      <select
+        className="select select-bordered w-full max-w-xs"
+        onChange={(e) => setNumContacts(e.target.value)}>
+        <option value={1} selected>
+          1
+        </option>
+        <option value={2}>2</option>
+        <option value={10}>5</option>
+      </select>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -50,12 +63,17 @@ export const ContactDashboard = () => {
                 />
               ))
             ) : (
-              <p>Loading contacts...</p>
+              <span className="loading loading-dots loading-lg"></span>
             )}
           </tbody>
         </table>
-        <AddContact />
+        <Link>
+          <div className="join">
+            <button className="join-item btn">Load More</button>
+          </div>
+        </Link>
       </div>
+      <AddContact />
     </div>
   );
 };
