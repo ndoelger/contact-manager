@@ -50,7 +50,6 @@
   "plugins": [
     "@babel/plugin-proposal-class-properties"
   ],
-  "proxy": "https://api.hubapi.com",
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
