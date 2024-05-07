@@ -8,11 +8,12 @@ import { AddContact } from "../components/AddContact";
 export const ContactDashboard = () => {
   const [contacts, setContacts] = useState(null);
 
-  const [numContacts, setNumContacts] = useState(1);
+  const [numContacts, setNumContacts] = useState(3);
 
   const fetchContacts = async () => {
     const response = await getContacts(numContacts);
     setContacts(response);
+    console.log(contacts)
   };
 
   useEffect(() => {
@@ -26,14 +27,14 @@ export const ContactDashboard = () => {
       <select
         className="select select-bordered w-full max-w-xs"
         onChange={(e) => setNumContacts(e.target.value)}>
-        <option value={1} selected>
-          1
+        <option value={25} selected>
+          25
         </option>
-        <option value={2}>2</option>
-        <option value={10}>5</option>
+        <option value={50}>50</option>
+        <option value={100}>100</option>
       </select>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table"> 
           {/* head */}
           <thead>
             <tr>
@@ -60,6 +61,7 @@ export const ContactDashboard = () => {
                   createdAt={contact.createdAt}
                   company={contact.company}
                   jobtitle={contact.jobtitle}
+                  fetchContacts={fetchContacts}
                 />
               ))
             ) : (
@@ -73,7 +75,7 @@ export const ContactDashboard = () => {
           </div>
         </Link>
       </div>
-      <AddContact />
+      <AddContact fetchContacts={fetchContacts} />
     </div>
   );
 };
