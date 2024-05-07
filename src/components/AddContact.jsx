@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createContact } from "../utilities/hubspot-test";
 
-export const AddContact = () => {
+export const AddContact = ({ fetchContacts }) => {
   const [contact, setContact] = useState({
     email: "",
     firstname: "",
@@ -13,6 +13,7 @@ export const AddContact = () => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     await createContact(contact);
+    await fetchContacts();
   };
 
   const handleChange = (evt) => {

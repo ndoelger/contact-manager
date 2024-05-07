@@ -11,8 +11,8 @@ export const ContactLine = ({
   createdAt,
   company,
   jobtitle,
+  fetchContacts,
 }) => {
-
   return (
     <>
       <tr>
@@ -48,22 +48,32 @@ export const ContactLine = ({
         <td>
           <button
             className="btn btn-ghost btn-xs"
-            onClick={() => document.getElementById("my_modal_1").showModal()}>
+            onClick={() => document.getElementById(`my_modal_${id}`).showModal()}>
             edit{" "}
           </button>
         </td>
         <td>
           <button
             className="btn btn-ghost btn-xs"
-            onClick={() => deleteContact(id)}>
+            onClick={async () =>  {
+              await deleteContact(id);
+              await fetchContacts();
+            }}>
             {" "}
             delete
           </button>
         </td>
       </tr>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
       <EditContactLine
-        {...{ id, firstname, lastname, email, company, jobtitle }}
+        {...{
+          id,
+          firstname,
+          lastname,
+          email,
+          company,
+          jobtitle,
+          fetchContacts,
+        }}
       />
     </>
   );

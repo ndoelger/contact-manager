@@ -9,6 +9,7 @@ export const EditContactLine = ({
   email,
   company,
   jobtitle,
+  fetchContacts,
 }) => {
   const [contact, setContact] = useState({
     firstname,
@@ -21,6 +22,7 @@ export const EditContactLine = ({
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     await updateContact(id, contact);
+    await fetchContacts();
   };
 
   const handleChange = (evt) => {
@@ -29,7 +31,7 @@ export const EditContactLine = ({
   };
 
   return (
-    <dialog id="my_modal_1" className="modal">
+    <dialog id={`my_modal_${id}`} className="modal">
       <div className="modal-box">
         <h3 className="font-bold text-lg">Edit Contact</h3>
         <p className="py-4">Press ESC key or click the button below to close</p>
@@ -85,8 +87,8 @@ export const EditContactLine = ({
               Job Title{" "}
               <input
                 type="text"
-                name="lastname"
-                value={contact.lastname}
+                name="jobtitle"
+                value={contact.jobtitle}
                 onChange={handleChange}
                 required
                 className="w-30 input input-bordered max-w-xs"
