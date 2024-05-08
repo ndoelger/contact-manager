@@ -48,14 +48,16 @@ export const ContactLine = ({
         <td>
           <button
             className="btn btn-ghost btn-xs"
-            onClick={() => document.getElementById(`my_modal_${id}`).showModal()}>
+            onClick={() =>
+              document.getElementById(`my_modal_${id}`).showModal()
+            }>
             edit{" "}
           </button>
         </td>
         <td>
           <button
             className="btn btn-ghost btn-xs"
-            onClick={async () =>  {
+            onClick={async () => {
               await deleteContact(id);
               await fetchContacts();
             }}>

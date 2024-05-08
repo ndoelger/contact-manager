@@ -1,40 +1,49 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { ContactLine } from "../components/ContactLine";
 import { useState, useEffect } from "react";
 import { getContacts } from "../utilities/hubspot-test";
 import { AddContact } from "../components/AddContact";
+import { Navigation } from "../components/Navigation";
+import { LoadMore } from "../components/LoadMore";
+
 
 export const ContactDashboard = () => {
   const [contacts, setContacts] = useState(null);
 
-  const [numContacts, setNumContacts] = useState(3);
+  const [numContacts, setNumContacts] = useState(1);
 
   const fetchContacts = async () => {
     const response = await getContacts(numContacts);
     setContacts(response);
-    console.log(contacts)
+  };
+
+  const fetchMoreContacts = async () => {
+    const nextResponse = await getContacts(numContacts, contacts.after);
+    console.log(contacts);
+    console.log(nextResponse);
+    const updatedContacts = {
+      ...contacts,
+      // ...nextResponse, // Merging the results arrays
+      // after: nextResponse.after, // Updating the pagination cursor
+    };
+
+    // console.log(updatedContacts);
+    // setContacts({...contacts, nextResponse});
+    // console.log(contacts)
   };
 
   useEffect(() => {
     fetchContacts();
+    console.log(contacts);
     // eslint-disable-next-line
   }, [numContacts]);
 
   return (
     <div>
       {" "}
-      <select
-        className="select select-bordered w-full max-w-xs"
-        onChange={(e) => setNumContacts(e.target.value)}>
-        <option value={25} selected>
-          25
-        </option>
-        <option value={50}>50</option>
-        <option value={100}>100</option>
-      </select>
+      <Navigation setNumContacts={setNumContacts} />
       <div className="overflow-x-auto">
-        <table className="table"> 
+        <table className="table">
           {/* head */}
           <thead>
             <tr>
@@ -69,12 +78,8 @@ export const ContactDashboard = () => {
             )}
           </tbody>
         </table>
-        <Link>
-          <div className="join">
-            <button className="join-item btn">Load More</button>
-          </div>
-        </Link>
       </div>
+      <LoadMore fetchMoreContacts={fetchMoreContacts} />
       <AddContact fetchContacts={fetchContacts} />
     </div>
   );
