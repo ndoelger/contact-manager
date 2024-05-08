@@ -65,8 +65,7 @@ export const getContacts = async (numContacts = 25) => {
         jobtitle: contact.properties.jobtitle,
       };
     });
-    if (response.data.paging)
-      contacts.after = response.data.paging.next.after;
+    if (response.data.paging) contacts.after = response.data.paging.next.after;
     console.log(contacts);
     return contacts;
   } catch (error) {
