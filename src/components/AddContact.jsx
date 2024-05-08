@@ -14,6 +14,13 @@ export const AddContact = ({ fetchContacts }) => {
     evt.preventDefault();
     await createContact(contact);
     await fetchContacts();
+    setContact({
+      email: "",
+      firstname: "",
+      lastname: "",
+      company: "",
+      jobtitle: "",
+    });
   };
 
   const handleChange = (evt) => {

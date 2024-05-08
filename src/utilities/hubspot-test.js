@@ -42,10 +42,10 @@ import { dateCoverter } from "./dateConverter";
 
 const token = process.env.REACT_APP_API_TOKEN;
 
-export const getContacts = async (numContacts = 25) => {
+export const getContacts = async (numContacts = 25, after) => {
   try {
     const response = await axios.get(
-      `/crm/v3/objects/contacts/?limit=${numContacts}&properties=email,firstname,lastname,jobtitle,company`,
+      `/crm/v3/objects/contacts/?limit=${numContacts}&properties=email,firstname,lastname,jobtitle,company&${after ? `after=${after}` : ''}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -53,7 +53,7 @@ export const getContacts = async (numContacts = 25) => {
         },
       }
     );
-    console.log(response);
+    // console.log(response);
     const contacts = response.data.results.map((contact) => {
       return {
         id: contact.id,
@@ -65,9 +65,8 @@ export const getContacts = async (numContacts = 25) => {
         jobtitle: contact.properties.jobtitle,
       };
     });
-    if (response.data.paging)
-      contacts.after = response.data.paging.next.after;
-    console.log(contacts);
+    if (response.data.paging) contacts.after = response.data.paging.next.after;
+    // console.log(contacts);
     return contacts;
   } catch (error) {
     console.error("Error:", error.response.data); // Handle errors here
