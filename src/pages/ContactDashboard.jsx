@@ -6,7 +6,6 @@ import { AddContact } from "../components/AddContact";
 import { Navigation } from "../components/Navigation";
 import { LoadMore } from "../components/LoadMore";
 
-
 export const ContactDashboard = () => {
   const [contacts, setContacts] = useState(null);
 
