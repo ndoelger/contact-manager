@@ -9,31 +9,32 @@ import { LoadMore } from "../components/LoadMore";
 export const ContactDashboard = () => {
   const [contacts, setContacts] = useState(null);
 
-  const [numContacts, setNumContacts] = useState(1);
+  const [numContacts, setNumContacts] = useState(2);
 
   const fetchContacts = async () => {
     const response = await getContacts(numContacts);
+    console.log(response);
     setContacts(response);
   };
 
   const fetchMoreContacts = async () => {
     const nextResponse = await getContacts(numContacts, contacts.after);
-    console.log(contacts);
-    console.log(nextResponse);
-    const updatedContacts = {
+    console.log("contact", contacts);
+    console.log("new contact", nextResponse);
+    const updatedContacts = [
       ...contacts,
-      // ...nextResponse, // Merging the results arrays
-      // after: nextResponse.after, // Updating the pagination cursor
-    };
+      ...nextResponse, // Merging the results arrays
 
-    // console.log(updatedContacts);
-    // setContacts({...contacts, nextResponse});
+      // after: nextResponse.after, // Updating the pagination cursor
+    ];
+    updatedContacts.after = nextResponse.after;
+    console.log("updated contacts", updatedContacts);
+    setContacts(updatedContacts);
     // console.log(contacts)
   };
 
   useEffect(() => {
     fetchContacts();
-    console.log(contacts);
     // eslint-disable-next-line
   }, [numContacts]);
 
@@ -78,7 +79,7 @@ export const ContactDashboard = () => {
           </tbody>
         </table>
       </div>
-      <LoadMore fetchMoreContacts={fetchMoreContacts} />
+      {contacts.after && <LoadMore fetchMoreContacts={fetchMoreContacts} />}
       <AddContact fetchContacts={fetchContacts} />
     </div>
   );
